@@ -2,33 +2,38 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To-Do List</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
   </head>
   <body>
     <div class="container">
       <h1>To-Do List</h1>
-      <a href="/create"><button>Create New Task</button></a>
-      <table>
-        <tr>
-          <th>#</th>
-          <th>Task</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-        {{range .}}
-        <tr>
-          <td>{{.Number}}</td>
-          <td>{{.Task}}</td>
-          <td>{{.Status}}</td>
-          <td>
-            <a href="/update?id={{.Number}}"><button>Update</button></a>
-            <a href="/delete?id={{.Number}}"><button>Delete</button></a>
-          </td>
-        </tr>
-        {{end}}
+      <table class="task-table">
+        <thead>
+          <tr>
+            <th>Number</th>
+            <th>Task</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{range .}}
+          <tr>
+            <td>{{.Number}}</td>
+            <td>{{.Task}}</td>
+            <td>{{.Status}}</td>
+            <td>
+              <a href="/update?id={{.Number}}" class="btn-small">Update</a>
+              <a href="/delete?id={{.Number}}" class="btn-small btn-danger"
+                >Delete</a
+              >
+            </td>
+          </tr>
+          {{end}}
+        </tbody>
       </table>
+      <a href="/create" class="btn">Create New Task</a>
     </div>
   </body>
 </html>
