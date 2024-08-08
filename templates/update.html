@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Task</title>
+</head>
+<body>
+    <h1>Update Task</h1>
+    <form action="/update" method="post">
+        <input type="hidden" name="id" value="{{.Number}}">
+        <label for="task">Task Description:</label>
+        <input type="text" id="task" name="task" value="{{.Task}}" required><br><br>
+        <label for="status">Status:</label>
+        <select id="status" name="status" required>
+            <option value="Not Started" {{if eq .Status "Not Started"}}selected{{end}}>Not Started</option>
+            <option value="In Progress" {{if eq .Status "In Progress"}}selected{{end}}>In Progress</option>
+            <option value="Completed" {{if eq .Status "Completed"}}selected{{end}}>Completed</option>
+        </select><br><br>
+        <input type="submit" value="Update Task">
+    </form>
+    <a href="/">Back to Task List</a>
+</body>
+</html>
