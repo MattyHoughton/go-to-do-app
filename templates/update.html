@@ -1,22 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Update Task</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css" />
 </head>
 <body>
     <h1>Update Task</h1>
     <form action="/update" method="post">
         <input type="hidden" name="id" value="{{.Number}}">
-        <label for="task">Task Description:</label>
-        <input type="text" id="task" name="task" value="{{.Task}}" required><br><br>
-        <label for="status">Status:</label>
-        <select id="status" name="status" required>
-            <option value="Not Started" {{if eq .Status "Not Started"}}selected{{end}}>Not Started</option>
-            <option value="In Progress" {{if eq .Status "In Progress"}}selected{{end}}>In Progress</option>
-            <option value="Completed" {{if eq .Status "Completed"}}selected{{end}}>Completed</option>
-        </select><br><br>
-        <input type="submit" value="Update Task">
+        <div>
+            <label for="task">Task:</label>
+            <input type="text" id="task" name="task" value="{{.Task}}" required>
+        </div>
+        <div>
+            <label for="status">Status:</label>
+            <select id="status" name="status">
+                <option value="Not Started" {{if eq .Status "Not Started"}}selected{{end}}>Not Started</option>
+                <option value="In Progress" {{if eq .Status "In Progress"}}selected{{end}}>In Progress</option>
+                <option value="Completed" {{if eq .Status "Completed"}}selected{{end}}>Completed</option>
+            </select>
+        </div>
+        <button type="submit">Update Task</button>
     </form>
-    <a href="/">Back to Task List</a>
+    <a href="/">Back to list</a>
 </body>
 </html>

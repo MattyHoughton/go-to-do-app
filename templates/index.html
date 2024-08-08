@@ -1,37 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To-Do List</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css" />
   </head>
   <body>
-    <h1>To-Do List</h1>
-    <a href="/create">Create New Task</a>
-    <table border="1">
-      <tr>
-        <th>Number</th>
-        <th>Task</th>
-        <th>Status</th>
-        <th>Actions</th>
-      </tr>
-      {{range .}}
-      <tr>
-        <td>{{.Number}}</td>
-        <td>{{.Task}}</td>
-        <td>{{.Status}}</td>
-        <td>
-          <a href="/update?id={{.Number}}">Update</a>
-          <a
-            href="/delete?id={{.Number}}"
-            onclick="return confirm('Are you sure?')"
-            >Delete</a
-          >
-        </td>
-      </tr>
-      {{else}}
-      <tr>
-        <td colspan="4">No tasks found.</td>
-      </tr>
-      {{end}}
-    </table>
+    <div class="container">
+      <h1>To-Do List</h1>
+      <a href="/create"><button>Create New Task</button></a>
+      <table>
+        <tr>
+          <th>#</th>
+          <th>Task</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+        {{range .}}
+        <tr>
+          <td>{{.Number}}</td>
+          <td>{{.Task}}</td>
+          <td>{{.Status}}</td>
+          <td>
+            <a href="/update?id={{.Number}}"><button>Update</button></a>
+            <a href="/delete?id={{.Number}}"><button>Delete</button></a>
+          </td>
+        </tr>
+        {{end}}
+      </table>
+    </div>
   </body>
 </html>

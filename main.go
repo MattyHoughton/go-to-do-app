@@ -72,7 +72,7 @@ func updateHandler(w http.ResponseWriter, r *http.Request) {
 		status := r.FormValue("status")
 
 		id, err := strconv.Atoi(idStr)
-		if err != nil {
+		if err != nil || id <= 0 {
 			http.Error(w, "Invalid task number", http.StatusBadRequest)
 			return
 		}
@@ -93,7 +93,7 @@ func updateHandler(w http.ResponseWriter, r *http.Request) {
 
 	idStr := r.URL.Query().Get("id")
 	id, err := strconv.Atoi(idStr)
-	if err != nil {
+	if err != nil || id <= 0 {
 		http.Error(w, "Invalid task number", http.StatusBadRequest)
 		return
 	}
@@ -239,6 +239,9 @@ func setupHandlers() {
 	http.HandleFunc("/delete", deleteHandler)
 	http.HandleFunc("/api/tasks", readTasksHandler)
 	http.HandleFunc("/api/task", taskAPIHandler)
+
+	// Serve static files (CSS, etc.)
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 }
 
 func main() {
